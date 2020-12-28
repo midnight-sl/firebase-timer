@@ -48,6 +48,18 @@ const Timers = () => {
     }
   }
 
+  const handleShowTime = (time) => {
+    time = Number(time);
+    const h = Math.floor(time / 3600);
+    const m = Math.floor(time % 3600 / 60);
+    const s = Math.floor(time % 3600 % 60);
+
+    const hDisplay = h > 0 ? (h.length === 1 ? `0${h}` : `0${h}` ): "00";
+    const mDisplay = m > 0 ? (m.length === 1 ? `0${m}` : `0${m}` ) : "00";
+    const sDisplay = s > 0 ? (s.length === 1 ? `0${s}` : s ) : "00";
+    return <p>{`${hDisplay}:${mDisplay}:${sDisplay}`}</p>; 
+  }
+
 
   const handleLogOut = () => {
     app.auth().signOut();
@@ -61,14 +73,14 @@ const Timers = () => {
         <div className="image-container">
           <img src="/stopwatch.png" alt="timer" />
         </div>
-        <p>{timerDesktop}</p>
+        <p>{handleShowTime(timerDesktop)}</p>
       </div>
       <div>
         <p>Mobile</p>
         <div className="image-container">
           <img src="/stopwatch.png" alt="timer" />
         </div>
-        <p>{timerMobile}</p>
+        <p>{handleShowTime(timerMobile)}</p>
       </div>
     </>
   )
