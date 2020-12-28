@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { withRouter, Redirect } from 'react-router';
 import app from '../base';
-import firebase from 'firebase/app';
+import firebase from 'firebase';
 
 const SignUp = ({ history }) => {
   const handleSignUp = useCallback(
@@ -13,12 +13,13 @@ const SignUp = ({ history }) => {
           .auth()
           .createUserWithEmailAndPassword(email.value, password.value);
 
-          // const user = app.auth().currentUser;
-          // firebase.database().ref("users").child(user.uid).set({
-          //   firstName: firstName.value,
-          //   lastName: lastName.value
-          // })
-
+          const currentUser = app.auth().currentUser;
+          const userRef = firebase.database().ref('users').child(currentUser.uid);
+          const user = {
+            firstName: firstName.value,
+            lastName: lastName.value
+          }
+          userRef.push(user);
 
         history.push("/");
       } catch (error) {
