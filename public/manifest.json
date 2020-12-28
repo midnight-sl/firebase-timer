@@ -1,0 +1,9 @@
+{
+  "short_name": "Timers with Auth",
+  "name": "React App with Firebase Auth and Timers",
+  
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
