@@ -14,12 +14,12 @@ const SignUp = ({ history }) => {
           .createUserWithEmailAndPassword(email.value, password.value);
 
           const currentUser = app.auth().currentUser;
-          const userRef = firebase.database().ref('users').child(currentUser.uid);
+          const userRef = firebase.database().ref('users/' + currentUser.uid);
           const user = {
             firstName: firstName.value,
             lastName: lastName.value
           }
-          userRef.push(user);
+          userRef.set(user);
 
         history.push("/");
       } catch (error) {
