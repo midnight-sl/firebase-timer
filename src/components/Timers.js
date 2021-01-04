@@ -2,14 +2,16 @@ import React, { useEffect, useState, useContext } from 'react';
 import app from '../base';
 import { AuthContext } from './Auth';
 import firebase from 'firebase';
+import '../styles/timers.css';
+
 
 
 const Timers = () => {
   const { currentUser, userSnap } = useContext(AuthContext);
 
   const [isItMobile, setIsItMobile] = useState(false);
-  const [timerMobile, setTimerMobile] = useState(userSnap.timerMobile || 0);
-  const [timerDesktop, setTimerDesktop] = useState(userSnap.timerDesktop || 0);
+  const [timerMobile, setTimerMobile] = useState(userSnap ? userSnap.timerMobile : 0);
+  const [timerDesktop, setTimerDesktop] = useState(userSnap ? userSnap.timerDesktop : 0);
 
   useEffect(() => {
     checkMobileOrDesktop();
@@ -57,7 +59,7 @@ const Timers = () => {
     const hDisplay = h > 0 ? (h.toString().length === 1 ? `0${h}` : h ) : "00";
     const mDisplay = m > 0 ? (m.toString().length === 1 ? `0${m}` : m ) : "00";
     const sDisplay = s > 0 ? (s.toString().length === 1 ? `0${s}` : s ) : "00";
-    return <p>{`${hDisplay}:${mDisplay}:${sDisplay}`}</p>; 
+    return <p className="timer">{`${hDisplay}:${mDisplay}:${sDisplay}`}</p>; 
   }
 
 
@@ -66,23 +68,25 @@ const Timers = () => {
   }
 
   return (
-    <>
+    <div className="timers">
       <button onClick={handleLogOut}>Sign out</button>
-      <div className="desktop-container">
-        <h3>Desktop</h3>
-        <div className="image-container">
-          <img src="/stopwatch.png" alt="timer" />
+      <div className="timers-container">
+        <div className="desktop box">
+          <p className="box-name">Desktop</p>
+          <div className="image-container">
+            <img src="/stopwatch.png" alt="timer" />
+          </div>
+          {handleShowTime(timerDesktop)}
         </div>
-        <p>{handleShowTime(timerDesktop)}</p>
-      </div>
-      <div className="desktop-container">
-        <h3>Mobile</h3>
-        <div className="image-container">
-          <img src="/stopwatch.png" alt="timer" />
+        <div className="mobile box">
+          <p className="box-name">Mobile</p>
+          <div className="image-container">
+            <img src="/stopwatch.png" alt="timer" />
+          </div>
+          {handleShowTime(timerMobile)}
         </div>
-        <p>{handleShowTime(timerMobile)}</p>
       </div>
-    </>
+    </div>
   )
 }
 

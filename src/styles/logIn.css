@@ -52,7 +52,7 @@ label {
 }
 input {
   background-color: #C4C4C4;
-  border-style: none;
+  border-style: none none solid none;
   font-size: 40px;
   line-height: 47px;
   width: 65%;
@@ -99,7 +99,6 @@ span {
 @media only screen and (max-width: 600px) {
   .panel {
     width: 95%;
-    background-color: plum;
   }
   label, button {
     font-size: 24px;

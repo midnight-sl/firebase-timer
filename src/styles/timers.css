@@ -1,0 +1,95 @@
+.timers {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+
+.timers button {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+  margin: 5% 5% 0 auto;
+
+  border: none;
+  background: #FFFFFF;
+  width: auto;
+}
+
+
+.timers-container {
+  display: flex;
+  height: 70%;
+  justify-content: space-evenly;
+  margin-top: 90px;
+}
+p {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 47px;
+  margin: 0;
+}
+
+.box {
+  height: 100%;
+  width: 35%;
+}
+.box-name {
+  margin-bottom: 15px;
+}
+.timer {
+  margin-top: 25px;
+}
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+  background: #C4C4C4;
+  border-radius: 25px;
+}
+img {
+  height: 45%;
+}
+
+@media only screen and (max-width: 750px) {
+  .timers {
+    width: 90%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .timers button {
+    margin: 3% 3% 0 auto;
+    height: auto;
+  }
+  .timers-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0;
+    height: 90%;
+  }
+  .box {
+    height: 49%;
+    width: 58%;
+  }
+  .box-name {
+    font-size: 24px;
+    line-height: 28px;
+  }
+  .timer {
+    font-size: 18px;
+    line-height: 21px;
+  }
+  img {
+    height: 60%;
+  }
+}
+
