@@ -35,31 +35,28 @@ const SignUp = ({ history }) => {
     }, [history]); 
 
   return (
-    <div>
-      <h1>Register</h1>
+    <div className="panel sign-up">
+      <h1 id="register">Register</h1>
       <form onSubmit={handleSignUp}>
-        <label>
+        <label className="sign-up-label"> 
           First Name
-          <input name="firstName" type="text" placeholder="Your First Name" />
+          <input name="firstName" type="text" />
         </label>
-        <br />
-        <label>
+        <label className="sign-up-label">
           Last Name
-          <input name="lastName" type="text" placeholder="Your Last Name" />
+          <input name="lastName" type="text" />
         </label>
-        <br />
-        <label>
+        <label className="sign-up-label">
           Email
-          <input name="email" type="email" placeholder="Email@email.com" />
+          <input name="email" type="email" />
         </label>
-        <br />
-        <label>
+        <label className="sign-up-label">
           Password
-          <input name="password" type="password" placeholder="Secret password" />
+          <input name="password" type="password" />
         </label>
         <button type="submit">Sign Up</button>
       </form>
-      <a onClick={handleGoToLogin}>Already registered? Log in</a>
+      <a onClick={handleGoToLogin}>Already registered? <span>Log in </span></a>
     </div>
   );
 };
