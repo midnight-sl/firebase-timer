@@ -54,9 +54,9 @@ const Timers = () => {
     const m = Math.floor(time % 3600 / 60);
     const s = Math.floor(time % 3600 % 60);
 
-    const hDisplay = h > 0 ? (h.length === 1 ? `0${h}` : `0${h}` ): "00";
-    const mDisplay = m > 0 ? (m.length === 1 ? `0${m}` : `0${m}` ) : "00";
-    const sDisplay = s > 0 ? (s.length === 1 ? `0${s}` : s ) : "00";
+    const hDisplay = h > 0 ? (h.toString().length === 1 ? `0${h}` : h ) : "00";
+    const mDisplay = m > 0 ? (m.toString().length === 1 ? `0${m}` : m ) : "00";
+    const sDisplay = s > 0 ? (s.toString().length === 1 ? `0${s}` : s ) : "00";
     return <p>{`${hDisplay}:${mDisplay}:${sDisplay}`}</p>; 
   }
 
