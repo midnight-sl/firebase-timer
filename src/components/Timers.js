@@ -10,8 +10,9 @@ const Timers = () => {
   const { currentUser, userSnap } = useContext(AuthContext);
 
   const [isItMobile, setIsItMobile] = useState(false);
-  const [timerMobile, setTimerMobile] = useState(userSnap ? userSnap.timerMobile : 0);
-  const [timerDesktop, setTimerDesktop] = useState(userSnap ? userSnap.timerDesktop : 0);
+  const [timerMobile, setTimerMobile] = useState(userSnap.timerMobile);
+  const [timerDesktop, setTimerDesktop] = useState(userSnap.timerDesktop);
+
 
   useEffect(() => {
     checkMobileOrDesktop();
@@ -43,10 +44,8 @@ const Timers = () => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(window.navigator.userAgent);
 		if (isMobile) {
       setIsItMobile(true);
-      console.log("Mobile timer should work");
 		} else {
       setIsItMobile(false);
-      console.log("Desktop timer should work");
     }
   }
 

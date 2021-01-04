@@ -13,8 +13,9 @@ export const AuthProvider = ({ children }) => {
     app.auth().onAuthStateChanged((user) => {
       setCurrentUser(user);
       setPending(false);
-      firebase.database().ref('users/' + currentUser.uid).once("value", snap => {
-        setUserSnap(snap.val()) })
+      if (currentUser) {
+        firebase.database().ref('users/' + currentUser.uid).once("value", snap => setUserSnap(snap.val()) ); 
+      } 
     });
   }, []);
 
