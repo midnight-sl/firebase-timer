@@ -5,25 +5,26 @@ import firebase from 'firebase';
 
 
 const Timers = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, userSnap } = useContext(AuthContext);
 
   const [isItMobile, setIsItMobile] = useState(false);
-  const [timerMobile, setTimerMobile] = useState(currentUser.timerMobile || 0);
-  const [timerDesktop, setTimerDesktop] = useState(currentUser.timerDesktop || 0);
+  const [timerMobile, setTimerMobile] = useState(userSnap.timerMobile || 0);
+  const [timerDesktop, setTimerDesktop] = useState(userSnap.timerDesktop || 0);
 
   useEffect(() => {
     checkMobileOrDesktop();
-
+    
     const interval = setInterval(() => {
-
       if (isItMobile) {
         setTimerMobile(timerMobile => timerMobile + 1);
         updateDbTime();
       } else {
         setTimerDesktop(timerDesktop => timerDesktop + 1);
+        updateDbTime()
       }
     }, 1000);
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps 
   }, []);
 
 
@@ -33,9 +34,8 @@ const Timers = () => {
       timerMobile: timerMobile,
       timerDesktop: timerDesktop
     }
-    userRef.set(timeSpent);
+    userRef.update(timeSpent);
   }
-
 
   const checkMobileOrDesktop = () => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(window.navigator.userAgent);
@@ -68,15 +68,15 @@ const Timers = () => {
   return (
     <>
       <button onClick={handleLogOut}>Sign out</button>
-      <div>
-        <p>Desktop</p>
+      <div className="desktop-container">
+        <h3>Desktop</h3>
         <div className="image-container">
           <img src="/stopwatch.png" alt="timer" />
         </div>
         <p>{handleShowTime(timerDesktop)}</p>
       </div>
-      <div>
-        <p>Mobile</p>
+      <div className="desktop-container">
+        <h3>Mobile</h3>
         <div className="image-container">
           <img src="/stopwatch.png" alt="timer" />
         </div>
